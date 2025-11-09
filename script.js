@@ -49,7 +49,48 @@ const templates = [
         image: "images/medical-business-portfolio.png",
         demoUrl: "templates/medical-business-portfolio/index.html",
         downloadUrl: "#"
+    },
+    {
+        id: 6,
+        name: "Estate Agency",
+        description: "EstateAgency has been specially designed for realtors, including real estate agents, agencies, property dealers, builders, local real estate professionals, single agents, and more.",
+        category: "Business",
+        downloads: 1220,
+        image: "images/estate-agency.png",
+        demoUrl: "templates/EstateAgency/index.html",
+        downloadUrl: "#"
+    },
+    {
+        id: 7,
+        name: "Strategy",
+        description: "We transform ideas into compelling realities, ensuring your brand stands out in a crowded marketplace.",
+        category: "Business",
+        downloads: 1400,
+        image: "images/strategy.png",
+        demoUrl: "templates/strategy/index.html",
+        downloadUrl: "#"
+    },
+    {
+        id: 8,
+        name: "PhotoFolio",
+        description: "I'm Jenny Wilson a Professional Photographer from New York City.",
+        category: "Business",
+        downloads: 120,
+        image: "images/PhotoFolio.png",
+        demoUrl: "templates/PhotoFolio/PhotoFolio/index.html",
+        downloadUrl: "#"
+    },
+    {
+        id: 9,
+        name: "iConstruction",
+        description: "Building Excellence Through Professional Construction Services.",
+        category: "Business",
+        downloads: 120,
+        image: "images/iConstruction.png",
+        demoUrl: "templates/iConstruction/index.html",
+        downloadUrl: "#"
     }
+   
     //,
     // {
     //     id: 6,
