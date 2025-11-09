@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Verification Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-result {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { border-left: 4px solid #4caf50; }
+        .error { border-left: 4px solid #f44336; }
+        .warning { border-left: 4px solid #ff9800; }
+        h1 { color: #333; }
+        h2 { color: #666; margin-top: 0; }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .template-list {
+            list-style: none;
+            padding: 0;
+        }
+        .template-list li {
+            padding: 8px;
+            margin: 4px 0;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        button {
+            background: #006aff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056cc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Template Showcase Verification</h1>
+    <button onclick="runTests()">Run Verification Tests</button>
+    <div id="results"></div>
+
+    <script>
+        async function runTests() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>Running tests...</p>';
+            
+            const results = [];
+            
+            // Test 1: Check if script.js loads
+            try {
+                const scriptResponse = await fetch('/script.js');
+                const scriptText = await scriptResponse.text();
+                
+                if (scriptText.includes('RentHome')) {
+                    results.push({
+                        type: 'success',
+                        title: 'Script File Check',
+                        message: 'script.js contains RentHome template definition'
+                    });
+                } else {
+                    results.push({
+                        type: 'error',
+                        title: 'Script File Check',
+                        message: 'RentHome template NOT found in script.js'
+                    });
+                }
+                
+                // Count templates in script
+                const templateMatches = scriptText.match(/id:\s*\d+,/g);
+                results.push({
+                    type: 'success',
+                    title: 'Template Count',
+                    message: `Found ${templateMatches ? templateMatches.length : 0} templates in script.js`
+                });
+                
+                // Extract template names
+                const nameMatches = scriptText.match(/name:\s*"([^"]+)"/g);
+                if (nameMatches) {
+                    const names = nameMatches.map(m => m.match(/"([^"]+)"/)[1]);
+                    results.push({
+                        type: 'success',
+                        title: 'Template Names Found',
+                        message: '<ul class="template-list">' + names.map(n => `<li>${n}</li>`).join('') + '</ul>'
+                    });
+                }
+                
+            } catch (error) {
+                results.push({
+                    type: 'error',
+                    title: 'Script Loading Error',
+                    message: error.message
+                });
+            }
+            
+            // Test 2: Check if index.html has the grid element
+            try {
+                const htmlResponse = await fetch('/index.html');
+                const htmlText = await htmlResponse.text();
+                
+                if (htmlText.includes('templatesGrid')) {
+                    results.push({
+                        type: 'success',
+                        title: 'HTML Structure Check',
+                        message: 'index.html contains templatesGrid element'
+                    });
+                } else {
+                    results.push({
+                        type: 'error',
+                        title: 'HTML Structure Check',
+                        message: 'templatesGrid element NOT found in index.html'
+                    });
+                }
+            } catch (error) {
+                results.push({
+                    type: 'error',
+                    title: 'HTML Loading Error',
+                    message: error.message
+                });
+            }
+            
+            // Test 3: Check if rental template exists
+            try {
+                const rentalResponse = await fetch('/templates/rental-home/index.html');
+                if (rentalResponse.ok) {
+                    results.push({
+                        type: 'success',
+                        title: 'Rental Template File Check',
+                        message: 'Rental home template file exists at /templates/rental-home/index.html'
+                    });
+                } else {
+                    results.push({
+                        type: 'error',
+                        title: 'Rental Template File Check',
+                        message: `Rental template returned status: ${rentalResponse.status}`
+                    });
+                }
+            } catch (error) {
+                results.push({
+                    type: 'error',
+                    title: 'Rental Template Access Error',
+                    message: error.message
+                });
+            }
+            
+            // Test 4: Try to load the main page in an iframe to check rendering
+            results.push({
+                type: 'warning',
+                title: 'Visual Verification',
+                message: 'Please check the main page at <a href="/" target="_blank">http://localhost:3000/</a> to verify all templates are visible'
+            });
+            
+            // Display results
+            displayResults(results);
+        }
+        
+        function displayResults(results) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = results.map(result => `
+                <div class="test-result ${result.type}">
+                    <h2>${result.title}</h2>
+                    <div>${result.message}</div>
+                </div>
+            `).join('');
+        }
+        
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            setTimeout(runTests, 500);
+        });
+    </script>
+</body>
+</html>

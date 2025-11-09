@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Lumora Software Development</title>
+    <meta name="description" content="Learn about Lumora Software Development - Professional website templates and custom development services.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .about-content {
+            padding: 4rem 0;
+            background: white;
+        }
+        .about-section {
+            margin-bottom: 3rem;
+        }
+        .about-section h2 {
+            color: #1a202c;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        .about-section h2.motto {
+            color: #009900;
+            border-bottom-color: #009900;
+        }
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .capability-card {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        .capability-card h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+        .features-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a5568;
+        }
+        .features-list li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            color: #009900;
+        }
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        .pricing-table th,
+        .pricing-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .pricing-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        .pricing-table td:nth-child(3) {
+            font-weight: 700;
+            color: #667eea;
+        }
+        .highlight-box {
+            background: #fff9e6;
+            border-left: 5px solid #ffc107;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .value-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #009900;
+        }
+        .value-item h4 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        .stats-section {
+            background: #2a2a33;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><img src="images/lumora-icon.svg" alt="Lumora" class="logo-icon"> Lumora</h1>
+                    <p>Software Development & Templates</p>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Templates</a>
+                    <a href="about.html" class="nav-link active">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="about-hero">
+            <div class="container">
+                <h1>✨ Lumora Software Development</h1>
+                <p>Professional Services & Template Solutions</p>
+            </div>
+        </section>
+
+        <section class="about-content">
+            <div class="container">
+                <div class="about-section">
+                    <h2 class="motto">💡 Innovating Digital Solutions for a Smarter Future</h2>
+                    <p>Lumora Software Development delivers <strong>tailored, high-quality websites and software</strong> with full-stack engineering precision. Whether your goal is a personal portfolio, a rapid-growth startup platform, or a complex <strong>enterprise-grade solution</strong>, we provide the expertise to turn your ideas into digital reality.</p>
+                </div>
+
+                <div class="about-section">
+                    <h2>💻 Core Capabilities & Expertise</h2>
+                    <p>We specialize in <strong>Full-Stack Development</strong>, ensuring robust, end-to-end solutions, including advanced operational security:</p>
+                    
+                    <div class="capabilities-grid">
+                        <div class="capability-card">
+                            <h3><i class="fas fa-code"></i> Frontend & Backend Engineering</h3>
+                            <p>Complete, cohesive development across the entire technology stack.</p>
+                        </div>
+                        <div class="capability-card">
+                            <h3><i class="fas fa-expand-arrows-alt"></i> Scalable Architecture</h3>
+                            <p>Designing systems that grow with your business and handle future traffic demands.</p>
+                        </div>
+                        <div class="capability-card">
+                            <h3><i class="fas fa-shield-alt"></i> DevSecOps Implementation</h3>
+                            <p>Integrating security practices throughout the entire development lifecycle for continuous compliance.</p>
+                        </div>
+                        <div class="capability-card">
+                            <h3><i class="fas fa-plug"></i> API Integration</h3>
+                            <p>Seamless connection to third-party services, payment gateways, and essential tools.</p>
+                        </div>
+                        <div class="capability-card">
+                            <h3><i class="fas fa-database"></i> Database Management</h3>
+                            <p>Efficient, secure, and performant data handling solutions.</p>
+                        </div>
+                        <div class="capability-card">
+                            <h3><i class="fas fa-paint-brush"></i> UI/UX Optimization</h3>
+                            <p>Creating intuitive and engaging user experiences.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h2>💼 Service Packages</h2>
+                    <p>Our pricing is transparent and based on project scope and complexity, offering flexible options for all business sizes. (All prices listed are Starting Prices in AED).</p>
+                    
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Website Type</th>
+                                <th>Key Features</th>
+                                <th>Starting Price (AED)</th>
+                                <th>Ideal For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Static Website</strong></td>
+                                <td>Up to 5 pages. Core HTML/CSS/JS.</td>
+                                <td><strong>500</strong></td>
+                                <td>Portfolios, simple company profiles, small businesses.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dynamic Website</strong></td>
+                                <td>Includes Admin Panel, Database, User Login, API Integration.</td>
+                                <td><strong>1,100</strong></td>
+                                <td>Startups, SMEs, content management, e-commerce lite.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Enterprise Projects</strong></td>
+                                <td>Custom-built platforms with advanced features and high scalability.</td>
+                                <td><strong>Up to 50,000+</strong></td>
+                                <td>Large corporations, specialized software (SaaS).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="highlight-box">
+                        <strong>Custom Solutions:</strong> Custom quotes are available for all large-scale or highly specialized projects requiring extensive development hours and unique technology stacks.
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h2>🔧 Why Choose Lumora Software Development?</h2>
+                    <p>Our partnership extends beyond deployment. We commit to a set of core values that ensure long-term success for your digital asset:</p>
+                    
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <h4><i class="fas fa-mobile-alt"></i> Responsive & Mobile-Friendly Design</h4>
+                            <p>Guaranteed flawless performance on all devices.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4><i class="fas fa-clock"></i> Fast Development & On-Time Delivery</h4>
+                            <p>Efficient processes that respect your deadlines.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4><i class="fas fa-life-ring"></i> 1-Year Free Technical Support</h4>
+                            <p>Peace of mind with post-launch technical assistance.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4><i class="fas fa-chart-line"></i> Live Data Integration & Analytics</h4>
+                            <p>Tools to measure performance and understand your users.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4><i class="fas fa-globe"></i> Multi-Language Development</h4>
+                            <p>Solutions ready for global audience expansion.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4><i class="fas fa-handshake"></i> Long-Term Business Partnerships</h4>
+                            <p>Dedicated support for your company's growth journey.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <h2>Our Impact</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Client Satisfaction</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Support Available</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>1 Year</h3>
+                        <p>Free Maintenance</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Lumora Software Development. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

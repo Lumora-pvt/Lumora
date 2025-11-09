@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Console - Template Showcase</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            margin: 0;
+        }
+        .console {
+            background: #252526;
+            border: 1px solid #3e3e42;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #4ec9b0;
+            margin-top: 0;
+        }
+        .log {
+            margin: 10px 0;
+            padding: 8px;
+            border-left: 3px solid #007acc;
+            background: #1e1e1e;
+        }
+        .error {
+            border-left-color: #f48771;
+            color: #f48771;
+        }
+        .success {
+            border-left-color: #4ec9b0;
+            color: #4ec9b0;
+        }
+        .warning {
+            border-left-color: #dcdcaa;
+            color: #dcdcaa;
+        }
+        pre {
+            margin: 5px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px 10px 0;
+        }
+        button:hover {
+            background: #005a9e;
+        }
+    </style>
+</head>
+<body>
+    <div class="console">
+        <h1>🔍 Template Showcase Debug Console</h1>
+        <div>
+            <button onclick="testScriptLoad()">Test Script Load</button>
+            <button onclick="testTemplateData()">Test Template Data</button>
+            <button onclick="testDOMElements()">Test DOM Elements</button>
+            <button onclick="openMainPage()">Open Main Page</button>
+            <button onclick="clearLogs()">Clear Console</button>
+        </div>
+        <div id="console-output"></div>
+    </div>
+
+    <script>
+        const consoleOutput = document.getElementById('console-output');
+        
+        function log(message, type = 'log') {
+            const logDiv = document.createElement('div');
+            logDiv.className = `log ${type}`;
+            logDiv.innerHTML = `<pre>${message}</pre>`;
+            consoleOutput.appendChild(logDiv);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        function clearLogs() {
+            consoleOutput.innerHTML = '';
+        }
+        
+        async function testScriptLoad() {
+            log('📝 Testing script.js load...', 'log');
+            try {
+                const response = await fetch('/script.js');
+                const scriptText = await response.text();
+                
+                log(`✅ Script loaded successfully (${scriptText.length} characters)`, 'success');
+                
+                // Check for RentHome
+                if (scriptText.includes('RentHome')) {
+                    log('✅ RentHome template found in script', 'success');
+                } else {
+                    log('❌ RentHome template NOT found in script', 'error');
+                }
+                
+                // Count templates
+                const templateCount = (scriptText.match(/id:\s*\d+,/g) || []).length;
+                log(`📊 Total templates in script: ${templateCount}`, 'success');
+                
+                // Check for syntax errors by trying to evaluate
+                try {
+                    // Extract just the templates array
+                    const templatesMatch = scriptText.match(/const templates = \[([\s\S]*?)\];/);
+                    if (templatesMatch) {
+                        const templatesArrayStr = '[' + templatesMatch[1] + ']';
+                        const parsedTemplates = eval(templatesArrayStr);
+                        log(`✅ Templates array is valid JavaScript (${parsedTemplates.length} items)`, 'success');
+                        
+                        // List all template names
+                        log('📋 Template names:', 'log');
+                        parsedTemplates.forEach((t, i) => {
+                            log(`   ${i + 1}. ${t.name} (ID: ${t.id})`, 'log');
+                        });
+                        
+                        // Check specifically for RentHome
+                        const rentHome = parsedTemplates.find(t => t.name.includes('RentHome'));
+                        if (rentHome) {
+                            log(`✅ RentHome found: ${JSON.stringify(rentHome, null, 2)}`, 'success');
+                        } else {
+                            log('❌ RentHome not found in parsed templates', 'error');
+                        }
+                    }
+                } catch (e) {
+                    log(`❌ Syntax error in templates array: ${e.message}`, 'error');
+                }
+                
+            } catch (error) {
+                log(`❌ Error loading script: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testTemplateData() {
+            log('🔍 Testing template data structure...', 'log');
+            
+            try {
+                // Load the script dynamically
+                const script = document.createElement('script');
+                script.src = '/script.js';
+                
+                script.onload = () => {
+                    log('✅ Script loaded into page', 'success');
+                    
+                    // Check if templates variable exists
+                    if (typeof templates !== 'undefined') {
+                        log(`✅ templates variable exists with ${templates.length} items`, 'success');
+                        
+                        templates.forEach((template, index) => {
+                            log(`Template ${index + 1}: ${template.name}`, 'log');
+                        });
+                        
+                        // Check for RentHome specifically
+                        const rentHome = templates.find(t => t.name.includes('RentHome'));
+                        if (rentHome) {
+                            log('✅ RentHome template accessible', 'success');
+                            log(JSON.stringify(rentHome, null, 2), 'log');
+                        } else {
+                            log('❌ RentHome not found in templates array', 'error');
+                        }
+                    } else {
+                        log('❌ templates variable not defined', 'error');
+                    }
+                };
+                
+                script.onerror = () => {
+                    log('❌ Failed to load script', 'error');
+                };
+                
+                document.head.appendChild(script);
+                
+            } catch (error) {
+                log(`❌ Error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testDOMElements() {
+            log('🔍 Testing DOM elements on main page...', 'log');
+            
+            try {
+                const response = await fetch('/index.html');
+                const html = await response.text();
+                
+                if (html.includes('templatesGrid')) {
+                    log('✅ templatesGrid element found in HTML', 'success');
+                } else {
+                    log('❌ templatesGrid element NOT found in HTML', 'error');
+                }
+                
+                if (html.includes('script.js')) {
+                    log('✅ script.js is linked in HTML', 'success');
+                } else {
+                    log('❌ script.js is NOT linked in HTML', 'error');
+                }
+                
+                // Check for required libraries
+                if (html.includes('font-awesome')) {
+                    log('✅ Font Awesome is included', 'success');
+                } else {
+                    log('⚠️ Font Awesome might be missing', 'warning');
+                }
+                
+            } catch (error) {
+                log(`❌ Error: ${error.message}`, 'error');
+            }
+        }
+        
+        function openMainPage() {
+            window.open('/', '_blank');
+        }
+        
+        // Auto-run basic test on load
+        window.addEventListener('load', () => {
+            log('🚀 Debug Console Ready', 'success');
+            log('Click buttons above to run tests', 'log');
+        });
+    </script>
+</body>
+</html>

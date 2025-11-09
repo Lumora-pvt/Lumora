@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Template Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .result { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .success { border-left: 4px solid #4caf50; }
+        .error { border-left: 4px solid #f44336; }
+        pre { background: #f9f9f9; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Template Loading Test</h1>
+    <div id="results"></div>
+
+    <script src="script.js"></script>
+    <script>
+        const resultsDiv = document.getElementById('results');
+        
+        function addResult(message, isSuccess = true) {
+            const div = document.createElement('div');
+            div.className = `result ${isSuccess ? 'success' : 'error'}`;
+            div.innerHTML = message;
+            resultsDiv.appendChild(div);
+        }
+        
+        // Test 1: Check if templates variable exists
+        if (typeof templates !== 'undefined') {
+            addResult(`✅ templates variable loaded: ${templates.length} templates found`);
+        } else {
+            addResult('❌ templates variable not found', false);
+        }
+        
+        // Test 2: List all templates
+        if (typeof templates !== 'undefined') {
+            addResult('<h3>All Templates:</h3>' + 
+                templates.map((t, i) => `${i+1}. ${t.name} (ID: ${t.id})`).join('<br>'));
+        }
+        
+        // Test 3: Check for RentHome specifically
+        if (typeof templates !== 'undefined') {
+            const rentHome = templates.find(t => t.name.includes('RentHome'));
+            if (rentHome) {
+                addResult(`✅ RentHome template found:<br><pre>${JSON.stringify(rentHome, null, 2)}</pre>`);
+            } else {
+                addResult('❌ RentHome template NOT found in array', false);
+            }
+        }
+        
+        // Test 4: Check template IDs
+        if (typeof templates !== 'undefined') {
+            const ids = templates.map(t => t.id);
+            const hasDuplicates = ids.length !== new Set(ids).size;
+            if (hasDuplicates) {
+                addResult(`⚠️ Warning: Duplicate IDs found: ${ids.join(', ')}`, false);
+            } else {
+                addResult(`✅ All template IDs are unique: ${ids.join(', ')}`);
+            }
+        }
+        
+        // Test 5: Simulate card creation
+        if (typeof templates !== 'undefined' && typeof createTemplateCard === 'function') {
+            addResult('✅ createTemplateCard function exists');
+            
+            try {
+                const testCard = createTemplateCard(templates[templates.length - 1]);
+                if (testCard) {
+                    addResult('✅ Successfully created card for last template (RentHome)');
+                    addResult(`Card HTML preview:<br><pre>${testCard.outerHTML.substring(0, 200)}...</pre>`);
+                } else {
+                    addResult('❌ createTemplateCard returned null/undefined', false);
+                }
+            } catch (e) {
+                addResult(`❌ Error creating card: ${e.message}`, false);
+            }
+        } else {
+            addResult('❌ createTemplateCard function not found', false);
+        }
+        
+        // Test 6: Check if DOM element exists
+        setTimeout(() => {
+            const grid = document.getElementById('templatesGrid');
+            if (grid) {
+                addResult(`✅ templatesGrid element exists with ${grid.children.length} children`);
+            } else {
+                addResult('⚠️ templatesGrid element not found (expected on main page)', false);
+            }
+        }, 100);
+    </script>
+</body>
+</html>

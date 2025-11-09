@@ -1,0 +1,30 @@
+{
+  "name": "template-showcase",
+  "version": "1.0.0",
+  "description": "Professional website template showcase for client presentations",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000 -o",
+    "dev": "npx live-server --port=3000 --open=/index.html",
+    "build": "echo 'Static site - no build process needed'",
+    "deploy": "echo 'Ready for deployment'"
+  },
+  "keywords": [
+    "templates",
+    "website",
+    "showcase",
+    "portfolio",
+    "business"
+  ],
+  "author": "Your Business Name",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lumora-pvt/lumora.git"
+  },
+  "homepage": "https://lumora-pvt.github.io/lumora"
+}
