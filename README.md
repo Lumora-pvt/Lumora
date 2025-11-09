@@ -25,6 +25,10 @@ A professional website template showcase inspired by HTML5UP, designed for busin
    ```
    Or simply open `index.html` in your browser
 
+   Or use http-server: 
+   ```bash
+   npx http-server . -p 3000
+   ```
 ## Customization
 
 ### Adding Your Templates
