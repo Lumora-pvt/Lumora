@@ -32,7 +32,7 @@ git commit -m "Initial commit: Lumora Template Showcase"
 Replace `yourusername` with your GitHub username:
 
 ```bash
-git remote add origin https://github.com/yourusername/template-showcase.git
+git remote add origin https://github.com/Lumora-pvt/Lumora.git
 git branch -M main
 git push -u origin main
 ```
