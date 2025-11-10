@@ -67,7 +67,7 @@ const templates = [
         category: "Business",
         downloads: 1400,
         image: "images/Strategy.png",
-        demoUrl: "templates/strategy/index.html",
+        demoUrl: "templates/Strategy/index.html",
         downloadUrl: "#"
     },
     {
