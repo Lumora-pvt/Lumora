@@ -66,7 +66,7 @@ const templates = [
         description: "We transform ideas into compelling realities, ensuring your brand stands out in a crowded marketplace.",
         category: "Business",
         downloads: 1400,
-        image: "images/strategy.png",
+        image: "images/Strategy.png",
         demoUrl: "templates/strategy/index.html",
         downloadUrl: "#"
     },
